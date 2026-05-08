@@ -10,232 +10,385 @@
 body{font-family:'Cairo',sans-serif;background:#f0edff;color:#1a1a2e;min-height:100vh;}
 #app{max-width:600px;margin:0 auto;padding:14px;}
 
-/* INTRO */
-.i-hero{background:linear-gradient(145deg,#312e81,#4f46e5,#7c3aed);border-radius:24px;padding:28px 20px 22px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;box-shadow:0 10px 32px rgba(79,70,229,.35);}
-.i-art{font-size:56px;display:block;margin-bottom:8px;animation:fl 3s ease-in-out infinite;}
-@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.i-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:3px;}
-.i-sub{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;}
+/* ── INTRO ── */
+#intro-screen{display:block;}
+.intro-hero{background:linear-gradient(145deg,#312e81,#4f46e5,#7c3aed);border-radius:24px;padding:28px 20px 22px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;box-shadow:0 10px 32px rgba(79,70,229,.35);}
+.hero-dots{position:absolute;inset:0;opacity:.08;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:20px 20px;}
+.hero-art{font-size:56px;display:block;margin-bottom:8px;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-title{font-size:22px;font-weight:900;color:#fff;margin-bottom:3px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;}
+.hero-class{display:inline-block;margin-top:8px;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.4);border-radius:20px;padding:4px 16px;font-size:12px;font-weight:700;color:#fff;}
 
-.i-strip{display:flex;justify-content:space-around;background:#fff;border-radius:14px;padding:10px 6px;margin-bottom:12px;border:2px solid #ddd6fe;}
-.i-si{text-align:center;}
-.i-si span:first-child{font-size:20px;display:block;}
-.i-si span:last-child{font-size:10px;color:#6d28d9;font-weight:700;}
+.info-strip{display:flex;justify-content:space-around;background:#fff;border-radius:14px;padding:10px 6px;margin-bottom:12px;border:2px solid #ddd6fe;box-shadow:0 2px 8px rgba(79,70,229,.07);}
+.is-item{text-align:center;}
+.is-icon{font-size:20px;display:block;}
+.is-lbl{font-size:10px;color:#6d28d9;font-weight:700;}
 
 .how-card{background:#fff;border-radius:16px;padding:16px 18px;border:2px solid #ddd6fe;margin-bottom:12px;}
-.step{display:flex;gap:10px;margin-bottom:10px;}
-.sbub{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;background:linear-gradient(135deg,#4f46e5,#7c3aed);}
-.stxt{font-size:13px;color:#333;line-height:1.6;}
+.how-head{font-size:14px;font-weight:900;color:#4f46e5;margin-bottom:12px;}
+.step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.sbub{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;margin-top:2px;background:linear-gradient(135deg,#4f46e5,#7c3aed);}
+.stxt{font-size:13px;color:#333;line-height:1.6;padding-top:3px;}
+.stxt strong{color:#4f46e5;}
 
-.btn-start{width:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;padding:17px;border-radius:50px;font-family:'Cairo',sans-serif;font-size:19px;font-weight:900;box-shadow:0 8px 24px rgba(79,70,229,.4);}
+.tease-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:14px;padding:14px 16px;margin-bottom:14px;text-align:center;}
+.tease-lbl{font-size:12px;color:#92400e;font-weight:700;margin-bottom:8px;}
+.tease-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:5px;}
+.tph{background:#f59e0b;color:#fff;border-radius:8px;padding:4px 12px;font-size:14px;font-weight:900;}
+.tph.h{background:#d1d5db;color:#9ca3af;}
 
-/* GAME HUD */
+.btn-start{width:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;padding:17px;border-radius:50px;font-family:'Cairo',sans-serif;font-size:19px;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(79,70,229,.4);}
+
+/* ── HUD ── */
+#game-screen{display:none;}
 .hud{background:linear-gradient(135deg,#312e81,#4f46e5);border-radius:18px;padding:12px 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(79,70,229,.35);}
-.timer{font-size:26px;font-weight:900;color:#fff;}
+.hud-lbl{font-size:10px;color:rgba(255,255,255,.65);margin-bottom:1px;}
+.timer{font-size:26px;font-weight:900;color:#fff;letter-spacing:2px;}
+.timer.warn{color:#fbbf24;}
+.timer.danger{color:#f87171;animation:blink .5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 .hud-v{font-size:15px;font-weight:900;color:#fff;}
 .hud-pts{font-size:18px;font-weight:900;color:#fbbf24;}
+.pbar-wrap{background:#ddd6fe;border-radius:10px;height:6px;margin-bottom:10px;overflow:hidden;}
+.pbar{height:100%;background:linear-gradient(90deg,#4f46e5,#a855f7);border-radius:10px;transition:width .8s;}
 
-/* QUESTION */
+.word-bar{background:#fff;border:2px solid #ddd6fe;border-radius:12px;padding:8px 12px;margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;box-shadow:0 2px 6px rgba(79,70,229,.07);}
+.wb-lbl{font-size:11px;font-weight:700;color:#6d28d9;flex-shrink:0;}
+.wb-word{background:#ede9fe;color:#312e81;border-radius:7px;padding:3px 10px;font-size:13px;font-weight:900;animation:popin .3s ease;}
+@keyframes popin{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.wb-empty{font-size:11px;color:#a0a0c0;font-style:italic;}
+
+/* ── QUESTION CARD ── */
 .qcard{background:#fff;border:2px solid #ddd6fe;border-radius:20px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 16px rgba(79,70,229,.1);}
-.qcard-top{padding:12px 16px;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#f5f3ff,#ede9fe);}
-.qnum{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;}
+.qcard-top{padding:12px 16px 10px;display:flex;align-items:center;gap:10px;border-bottom:2px solid #ede9fe;background:linear-gradient(135deg,#f5f3ff,#ede9fe);}
+.qnum{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 3px 10px rgba(79,70,229,.4);}
+.qcat{font-size:12px;font-weight:700;color:#4f46e5;}
+.qillus{margin-right:auto;width:44px;height:44px;border-radius:12px;background:#fff;border:2px solid #ddd6fe;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .qbody{padding:18px;}
-.qtext{font-size:17px;font-weight:700;line-height:1.7;margin-bottom:16px;}
-.choices{display:flex;flex-direction:column;gap:9px;}
-.cbtn{background:#fafafe;border:2px solid #ddd6fe;border-radius:13px;padding:13px 16px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;text-align:right;}
-.cbtn.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;}
+.qtext{font-size:17px;font-weight:700;color:#1a1a2e;line-height:1.7;margin-bottom:16px;}
+
+.choices{display:flex;flex-direction:column;gap:9px;margin-bottom:12px;}
+.cbtn{background:#fafafe;border:2px solid #ddd6fe;border-radius:13px;padding:13px 16px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:600;color:#1a1a2e;cursor:pointer;text-align:right;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.cbtn:active{transform:scale(.98);}
+.cbtn.correct{border-color:#16a34a;background:#f0fdf4;color:#15803d;pointer-events:none;}
 .cbtn.wrong{border-color:#dc2626;background:#fef2f2;color:#b91c1c;}
+.cbtn.disabled{pointer-events:none;opacity:.38;}
 
-/* FINAL PHASE */
-.slots-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;}
-.slot{min-width:75px;height:48px;background:#f8f6ff;border:2.5px dashed #a78bfa;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#4f46e5;}
+.feedback{border-radius:11px;padding:11px 14px;font-size:13px;font-weight:700;display:none;animation:popin .3s ease;}
+.feedback.ok{background:#f0fdf4;border:1.5px solid #86efac;color:#15803d;}
+.feedback.no{background:#fef2f2;border:1.5px solid #fca5a5;color:#b91c1c;}
+
+.word-reward{display:none;margin-top:10px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fbbf24;border-radius:13px;padding:12px 14px;animation:popin .4s ease;text-align:center;}
+.wr-lbl{font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px;}
+.wr-word{display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:10px;padding:6px 20px;font-size:20px;font-weight:900;box-shadow:0 4px 12px rgba(245,158,11,.4);margin-bottom:4px;}
+.wr-count{font-size:11px;color:#92400e;font-weight:700;}
+.next-btn{display:block;width:100%;margin-top:10px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:50px;padding:13px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(79,70,229,.35);}
+
+/* ══════════════════════════════════
+   FINAL — TAP TO SELECT & PLACE
+══════════════════════════════════ */
+#final-screen{display:none;}
+.final-hero{background:linear-gradient(145deg,#1e3a5f,#1565c0,#0288d1);border-radius:24px;padding:22px 18px;text-align:center;margin-bottom:12px;box-shadow:0 8px 28px rgba(21,101,192,.35);position:relative;overflow:hidden;}
+.fh-pat{position:absolute;inset:0;opacity:.07;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:16px 16px;}
+.final-illus{font-size:48px;display:block;margin-bottom:6px;animation:float 2.5s ease-in-out infinite;}
+.final-title{font-size:19px;font-weight:900;color:#fff;margin-bottom:3px;}
+.final-sub{font-size:12px;color:rgba(255,255,255,.85);font-weight:600;}
+
+/* instruction banner */
+.tap-instruction{background:#e0f2fe;border:2px solid #7dd3fc;border-radius:14px;padding:12px 14px;margin-bottom:12px;text-align:center;font-size:13px;font-weight:700;color:#0c4a6e;line-height:1.6;}
+.tap-instruction span{background:#0284c7;color:#fff;border-radius:6px;padding:1px 8px;font-size:13px;font-weight:900;}
+
+/* word pool */
+.pool-card{background:#fff;border:2px solid #bfdbfe;border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:0 3px 12px rgba(21,101,192,.1);}
+.pool-title{font-size:13px;font-weight:900;color:#1e40af;margin-bottom:10px;}
+.pool-words{display:flex;gap:8px;flex-wrap:wrap;min-height:48px;align-items:flex-start;}
+.tap-word{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:#fff;border-radius:10px;padding:9px 16px;
+  font-size:16px;font-weight:900;cursor:pointer;
+  transition:all .15s;box-shadow:0 3px 10px rgba(79,70,229,.3);
+  border:3px solid transparent;
+}
+.tap-word:active{transform:scale(.94);}
+.tap-word.selected{
+  border-color:#fbbf24;
+  box-shadow:0 0 0 3px #fbbf24,0 4px 14px rgba(79,70,229,.4);
+  transform:scale(1.06);
+}
+.tap-word.used{background:#e5e7eb;color:#9ca3af;box-shadow:none;pointer-events:none;border-color:transparent;}
+
+/* zones — HORIZONTAL layout for mobile */
+.zones-wrap{background:#fff;border:2px solid #ddd6fe;border-radius:18px;padding:14px;margin-bottom:12px;}
+.zones-title{font-size:13px;font-weight:900;color:#4f46e5;margin-bottom:12px;}
+
+.zone-row{margin-bottom:12px;}
+.zone-label{font-size:12px;font-weight:700;color:#6d28d9;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+.zone-clear{font-size:11px;color:#dc2626;cursor:pointer;background:none;border:none;font-family:'Cairo',sans-serif;font-weight:700;padding:2px 6px;}
+
+/* slots in one row */
+.slots-row{display:flex;gap:6px;flex-direction:row;align-items:center;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;}
+.slot{
+  min-width:70px;height:46px;flex-shrink:0;
+  background:#f8f6ff;border:2.5px dashed #a78bfa;
+  border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;color:#4f46e5;
+  cursor:pointer;transition:all .2s;padding:0 8px;white-space:nowrap;
+}
 .slot.filled{background:#ede9fe;border-style:solid;border-color:#7c3aed;color:#312e81;}
-.tw{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:10px;padding:9px 16px;font-size:16px;font-weight:900;border:3px solid transparent;}
-.tw.sel{border-color:#fbbf24;}
-.tw.used{background:#e5e7eb;color:#9ca3af;pointer-events:none;}
+.slot.active-zone{border-color:#0284c7;background:#e0f2fe;border-style:solid;animation:pulse-border 1s infinite;}
+@keyframes pulse-border{0%,100%{border-color:#0284c7}50%{border-color:#7dd3fc}}
+.slot:active{transform:scale(.95);}
 
-/* WIN/LOSE */
-.end-card{background:#fff;border-radius:22px;padding:26px 20px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1);}
+.check-area{text-align:center;}
+.tries-txt{font-size:13px;font-weight:700;color:#7c3aed;margin-bottom:8px;}
+.btn-check{width:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:50px;padding:14px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 5px 16px rgba(79,70,229,.4);margin-bottom:8px;}
+.btn-check:active{transform:scale(.97);}
+.check-err{color:#dc2626;font-size:13px;font-weight:700;min-height:18px;margin-bottom:8px;}
+.btn-hint{width:100%;background:#fff;border:2px dashed #a78bfa;border-radius:14px;padding:11px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;color:#7c3aed;cursor:pointer;display:none;}
+.hint-reveal{background:#f5f3ff;border:2px solid #a78bfa;border-radius:12px;padding:12px 14px;margin-top:8px;font-size:13px;font-weight:700;color:#4f46e5;text-align:right;line-height:2;display:none;animation:popin .3s ease;}
+
+/* ── WIN ── */
+#win-screen{display:none;text-align:center;}
+.win-hero{background:linear-gradient(145deg,#14532d,#166534,#15803d);border-radius:24px;padding:26px 20px;margin-bottom:12px;box-shadow:0 8px 28px rgba(22,101,52,.4);}
+.win-illus{font-size:72px;display:block;animation:bounce 1s infinite;}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
+.win-title{font-size:24px;font-weight:900;color:#fff;margin:8px 0 3px;}
+.win-msg{font-size:20px;font-weight:900;color:#fbbf24;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.win-sub{font-size:13px;color:rgba(255,255,255,.85);font-weight:600;margin-top:6px;}
+.wstats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.wstat{background:#fff;border-radius:12px;padding:10px 16px;min-width:85px;border:2px solid #ddd6fe;}
+.wval{font-size:22px;font-weight:900;color:#4f46e5;}
+.wlbl{font-size:10px;color:#666;font-weight:600;}
+.phrases-reveal{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;border-radius:16px;padding:16px;margin-bottom:12px;text-align:center;}
+.pr-lbl{font-size:12px;color:#92400e;font-weight:700;margin-bottom:10px;}
+.pr-line{font-size:17px;font-weight:900;color:#451a03;margin-bottom:6px;}
+.pr-line span{background:#f59e0b;color:#fff;border-radius:7px;padding:3px 10px;margin:2px;display:inline-block;}
+.qr-card{background:#fff;border:2px solid #ddd6fe;border-radius:16px;padding:16px;margin-bottom:12px;}
+.qr-ttl{font-size:13px;font-weight:900;color:#4f46e5;margin-bottom:10px;}
+#qr-code{display:flex;justify-content:center;margin-bottom:8px;}
+#qr-code canvas,#qr-code img{border-radius:10px;border:3px solid #7c3aed;}
+.qr-hint{font-size:11px;color:#666;}
+.btn-again{width:100%;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:50px;padding:14px;font-family:'Cairo',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 5px 16px rgba(79,70,229,.4);}
+
+/* ── ALMOST / LOSE ── */
+#almost-screen,#lose-screen{display:none;text-align:center;}
+.end-card{background:#fff;border-radius:22px;padding:26px 20px;box-shadow:0 4px 16px rgba(0,0,0,.1);}
+.end-card.almost{border:2px solid #fbbf24;}
+.end-card.lose{border:2px solid #fca5a5;}
+.end-icon{font-size:65px;display:block;margin-bottom:10px;}
+.end-t{font-size:21px;font-weight:900;margin-bottom:8px;}
+.end-t.almost{color:#92400e;}
+.end-t.lose{color:#dc2626;}
+.end-body{font-size:14px;color:#444;margin-bottom:18px;line-height:1.85;}
+.end-phrase{font-size:16px;font-weight:900;color:#4f46e5;}
+
+.confetti-p{position:fixed;width:10px;height:16px;animation:fall 3s linear forwards;pointer-events:none;z-index:999;}
+@keyframes fall{0%{transform:translateY(-20px) rotateZ(0);opacity:1}100%{transform:translateY(100vh) rotateZ(720deg);opacity:0}}
 </style>
 </head>
 <body>
 <div id="app">
 
-<div id="S-intro">
-  <div class="i-hero">
-    <span class="i-art">🔐</span>
-    <div class="i-title">غرفة الهروب الرقمية</div>
-    <div class="i-sub">تحدي أهالي الصف التاسع 🎓</div>
+<!-- ══ INTRO ══ -->
+<div id="intro-screen">
+  <div class="intro-hero">
+    <div class="hero-dots"></div>
+    <span class="hero-art">🔐</span>
+    <div class="hero-title">غرفة الهروب الرقمية</div>
+    <div class="hero-sub">تحدي أهالي الصف التاسع 🎓</div>
+    <div class="hero-class">🏫 مدرسة إعدادية — الصف التاسع 4</div>
   </div>
-  <div class="i-strip">
-    <div class="i-si"><span>⏱️</span><span>15 دقيقة</span></div>
-    <div class="i-si"><span>🧩</span><span>7 أسئلة</span></div>
+  <div class="info-strip">
+    <div class="is-item"><span class="is-icon">⏱️</span><span class="is-lbl">15 دقيقة</span></div>
+    <div class="is-item"><span class="is-icon">🧩</span><span class="is-lbl">7 أسئلة</span></div>
+    <div class="is-item"><span class="is-icon">👆</span><span class="is-lbl">اضغط ورتّب</span></div>
+    <div class="is-item"><span class="is-icon">🏆</span><span class="is-lbl">الأسرع يفوز</span></div>
   </div>
   <div class="how-card">
-    <div class="step"><div class="sbub">1</div><div class="stxt">أجب على <strong>7 أسئلة</strong> رقمية</div></div>
-    <div class="step"><div class="sbub">2</div><div class="stxt">اجمع الكلمات المخفية</div></div>
-    <div class="step"><div class="sbub">3</div><div class="stxt">رتّب الجمل النهائية لتهرب!</div></div>
+    <div class="how-head">🗺️ كيف تلعب؟</div>
+    <div class="step"><div class="sbub">1</div><div class="stxt">أجب على <strong>7 أسئلة</strong> عن التعلم الرقمي والذكاء الاصطناعي</div></div>
+    <div class="step"><div class="sbub">2</div><div class="stxt">كل إجابة صحيحة تعطيك <strong>كلمة مخفية</strong> تُحفظ تلقائياً</div></div>
+    <div class="step"><div class="sbub">3</div><div class="stxt">في النهاية: <strong>اضغط على كلمة</strong> ثم اضغط على الخانة التي تريد وضعها فيها</div></div>
+    <div class="step"><div class="sbub">4</div><div class="stxt">رتّب الجملتين واضغط <strong>"تحقق"</strong> — من يفوز أولاً يهرب! 🚀</div></div>
   </div>
-  <button class="btn-start" onclick="startGame()">🚀 ابدأ التحدي!</button>
+  <div class="tease-box">
+    <div class="tease-lbl">🔐 الجملتان السريتان — اكتشفهما في النهاية!</div>
+    <div class="tease-row"><span class="tph h">؟؟؟</span><span class="tph h">؟؟؟</span><span class="tph h">؟؟؟</span></div>
+    <div style="font-size:12px;color:#92400e;font-weight:700;margin:3px 0">و</div>
+    <div class="tease-row"><span class="tph h">؟؟؟</span><span class="tph h">؟؟؟</span><span class="tph h">؟؟؟</span><span class="tph h">؟؟؟</span></div>
+  </div>
+  <button class="btn-start" onclick="startGame()">🚀 ابدأ التحدي الآن!</button>
 </div>
 
-<div id="S-game" style="display:none">
+<!-- ══ GAME ══ -->
+<div id="game-screen">
   <div class="hud">
-    <div><div class="timer" id="timer">15:00</div></div>
-    <div class="hud-pts" id="score">0</div>
+    <div><div class="hud-lbl">الوقت</div><div class="timer" id="timer">15:00</div></div>
+    <div style="text-align:center"><div class="hud-lbl">السؤال</div><div class="hud-v" id="prog-val">1/7</div></div>
+    <div style="text-align:left"><div class="hud-lbl">النقاط</div><div class="hud-pts" id="score-val">0</div></div>
+  </div>
+  <div class="pbar-wrap"><div class="pbar" id="prog-bar" style="width:0%"></div></div>
+  <div class="word-bar">
+    <span class="wb-lbl">🗝️</span>
+    <span class="wb-empty" id="wb-empty">ستظهر كلماتك هنا...</span>
+    <div id="wb-words" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
   </div>
   <div class="qcard">
-    <div class="qcard-top"><div class="qnum" id="qnum">1</div><div id="qcat"></div></div>
+    <div class="qcard-top">
+      <div class="qnum" id="q-num">1</div>
+      <div class="qcat" id="q-cat"></div>
+      <div class="qillus" id="q-illus">🤖</div>
+    </div>
     <div class="qbody">
-      <div class="qtext" id="qtext"></div>
+      <div class="qtext" id="q-text"></div>
       <div class="choices" id="choices"></div>
-      <button id="nxt" style="display:none;width:100%;margin-top:15px;padding:12px;border-radius:50px;background:#4f46e5;color:#fff;border:none;font-weight:bold;" onclick="nextQ()">التالي ←</button>
+      <div class="feedback" id="feedback"></div>
+      <div class="word-reward" id="word-reward">
+        <div class="wr-lbl">🎉 كلمة جديدة انضمت لصندوقك!</div>
+        <div class="wr-word" id="wr-display"></div>
+        <div class="wr-count" id="wr-count"></div>
+      </div>
+      <button class="next-btn" id="next-btn" style="display:none" onclick="nextQ()">التالي ←</button>
     </div>
   </div>
 </div>
 
-<div id="S-final" style="display:none">
-  <div class="end-card">
-    <h3>🧠 اللغز الأخير</h3>
-    <p style="font-size:12px;margin-bottom:15px;">اضغط على كلمة ثم على خانة فارغة</p>
-    <div id="pool" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;"></div>
-    
-    <div style="text-align:right">
-      <p style="font-size:12px;font-weight:bold;color:#4f46e5">الجملة 1 (3 كلمات):</p>
-      <div class="slots-row">
-        <div class="slot" id="z1s0" onclick="slotTap(1,0)">+</div>
-        <div class="slot" id="z1s1" onclick="slotTap(1,1)">+</div>
-        <div class="slot" id="z1s2" onclick="slotTap(1,2)">+</div>
+<!-- ══ FINAL ══ -->
+<div id="final-screen">
+  <div class="final-hero">
+    <div class="fh-pat"></div>
+    <span class="final-illus">🧠</span>
+    <div class="final-title">اللغز الأخير — افتح الباب!</div>
+    <div class="final-sub">رتّب الكلمات السبع في الجملتين الصحيحتين</div>
+  </div>
+
+  <div class="tap-instruction">
+    👆 اضغط على <span>كلمة</span> لتحديدها<br>
+    ثم اضغط على <span>خانة فارغة</span> في الجملة المناسبة<br>
+    اضغط على كلمة موضوعة لإعادتها للمجموعة
+  </div>
+
+  <div class="pool-card">
+    <div class="pool-title">📦 الكلمات السبع — اضغط لتحديد:</div>
+    <div class="pool-words" id="pool-words"></div>
+  </div>
+
+  <div class="zones-wrap">
+    <div class="zones-title">🔐 ضع كل كلمة في الجملة الصحيحة:</div>
+
+    <div class="zone-row">
+      <div class="zone-label">
+        <span>الجملة الأولى — 3 كلمات</span>
+        <button class="zone-clear" onclick="clearZone(1)">✕ مسح</button>
       </div>
-      <p style="font-size:12px;font-weight:bold;color:#4f46e5;margin-top:10px">الجملة 2 (4 كلمات):</p>
-      <div class="slots-row">
-        <div class="slot" id="z2s0" onclick="slotTap(2,0)">+</div>
-        <div class="slot" id="z2s1" onclick="slotTap(2,1)">+</div>
-        <div class="slot" id="z2s2" onclick="slotTap(2,2)">+</div>
-        <div class="slot" id="z2s3" onclick="slotTap(2,3)">+</div>
+      <div class="slots-row" id="slots-1">
+        <div class="slot" id="s1-0" onclick="slotTap(1,0)">اضغط</div>
+        <div class="slot" id="s1-1" onclick="slotTap(1,1)">اضغط</div>
+        <div class="slot" id="s1-2" onclick="slotTap(1,2)">اضغط</div>
       </div>
     </div>
-    <button class="btn-start" style="margin-top:20px;" onclick="checkFinal()">🔓 تحقق</button>
-    <div id="cerr" style="color:red;font-size:12px;margin-top:10px;"></div>
+
+    <div class="zone-row">
+      <div class="zone-label">
+        <span>الجملة الثانية — 4 كلمات</span>
+        <button class="zone-clear" onclick="clearZone(2)">✕ مسح</button>
+      </div>
+      <div class="slots-row" id="slots-2">
+        <div class="slot" id="s2-0" onclick="slotTap(2,0)">اضغط</div>
+        <div class="slot" id="s2-1" onclick="slotTap(2,1)">اضغط</div>
+        <div class="slot" id="s2-2" onclick="slotTap(2,2)">اضغط</div>
+        <div class="slot" id="s2-3" onclick="slotTap(2,3)">اضغط</div>
+      </div>
+    </div>
+
+    <div class="check-area">
+      <div class="tries-txt" id="tries-txt">لديك 5 محاولات</div>
+      <button class="btn-check" onclick="checkFinal()">🔓 تحقق وافتح الباب!</button>
+      <div class="check-err" id="check-err"></div>
+      <button class="btn-hint" id="btn-hint" onclick="showHint()">💡 مساعدة — أرني تلميحاً</button>
+      <div class="hint-reveal" id="hint-reveal"></div>
+    </div>
   </div>
 </div>
 
-<div id="S-win" style="display:none">
-  <div class="end-card">
-    <h1 style="font-size:50px">🏆</h1>
-    <h2>لقد فزت!</h2>
-    <p>«أبناؤنا هم مستقبلنا» و «نحن معاً نصنع الفارق»</p>
-    <button class="btn-start" style="margin-top:20px" onclick="location.reload()">🔄 إعادة</button>
+<!-- ══ WIN ══ -->
+<div id="win-screen">
+  <div class="win-hero">
+    <span class="win-illus">🏆</span>
+    <div class="win-title">لقد فزت! 🎊</div>
+    <div class="win-msg">✨ أحسنت يا بطل! ✨</div>
+    <div class="win-sub">اكتشفت الرسالة الحقيقية لهذه الفعالية!</div>
+  </div>
+  <div class="wstats">
+    <div class="wstat"><div class="wval" id="final-time">-</div><div class="wlbl">وقت متبقي</div></div>
+    <div class="wstat"><div class="wval" id="final-score">-</div><div class="wlbl">نقاطك</div></div>
+    <div class="wstat"><div class="wval">7/7</div><div class="wlbl">أسئلة</div></div>
+  </div>
+  <div class="phrases-reveal">
+    <div class="pr-lbl">🔑 الرسالتان اللتان اكتشفتهما:</div>
+    <div class="pr-line"><span>أبناؤنا</span> <span>هم</span> <span>مستقبلنا</span></div>
+    <div style="font-size:13px;color:#92400e;font-weight:700;margin:4px 0">و</div>
+    <div class="pr-line"><span>نحن</span> <span>معاً</span> <span>نصنع</span> <span>الفارق</span></div>
+  </div>
+  <div class="qr-card">
+    <div class="qr-ttl">📱 شارك التحدي مع بقية الأهالي!</div>
+    <div id="qr-code"></div>
+    <div class="qr-hint">امسح الباركود لتشغيل اللعبة على أي هاتف</div>
+  </div>
+  <button class="btn-again" onclick="restartGame()">🔄 العب مجدداً</button>
+</div>
+
+<!-- ══ ALMOST ══ -->
+<div id="almost-screen">
+  <div class="end-card almost">
+    <span class="end-icon">💪</span>
+    <div class="end-t almost">بالتوفيق! كدت تصل!</div>
+    <div class="end-body">
+      لم تتمكن من اكتشاف الرسالة هذه المرة،<br>لكن المعرفة التي اكتسبتها لا تُقدَّر!<br><br>
+      الجملتان كانتا:<br>
+      <span class="end-phrase">«أبناؤنا هم مستقبلنا»</span><br>
+      <span style="font-size:12px;color:#888">و</span><br>
+      <span class="end-phrase">«نحن معاً نصنع الفارق»</span>
+    </div>
+    <button class="btn-again" onclick="restartGame()">🔄 حاول مجدداً</button>
+  </div>
+</div>
+
+<!-- ══ LOSE ══ -->
+<div id="lose-screen">
+  <div class="end-card lose">
+    <span class="end-icon">⏰</span>
+    <div class="end-t lose">انتهى الوقت! بالتوفيق!</div>
+    <div class="end-body">
+      الجملتان السريتان كانتا:<br>
+      <span class="end-phrase">«أبناؤنا هم مستقبلنا»</span><br>
+      <span style="font-size:12px;color:#888">و</span><br>
+      <span class="end-phrase">«نحن معاً نصنع الفارق»</span>
+    </div>
+    <button class="btn-again" onclick="restartGame()">🔄 حاول مجدداً</button>
   </div>
 </div>
 
 </div>
-
 <script>
-const P1=new Set(["أبناؤنا","هم","مستقبلنا"]);
-const P2=new Set(["نحن","معاً","نصنع","الفارق"]);
-const QS=[
- {cat:"🤖 ذكاء اصطناعي",q:"ما هو الذكاء الاصطناعي؟",ch:[{t:"تقنية تجعل الكمبيوتر يفكر كالإنسان",c:true},{t:"مجرد برنامج ألعاب",c:false}],w:"أبناؤنا"},
- {cat:"💻 تعلم",q:"ما ميزة التعلم الإلكتروني؟",ch:[{t:"المرونة في الزمان والمكان",c:true},{t:"لا يحتاج إنترنت",c:false}],w:"هم"},
- {cat:"🧠 نماذج",q:"ما هو ChatGPT؟",ch:[{t:"نموذج ذكاء اصطناعي للمحادثة",c:true},{t:"تطبيق صور",c:false}],w:"مستقبلنا"},
- {cat:"🚀 مهارات",q:"ما المهارة التي تميز الإنسان؟",ch:[{t:"الإبداع والتعاطف",c:true},{t:"الحساب السريع",c:false}],w:"نحن"},
- {cat:"🛡️ أمان",q:"كيف نحمي أبناءنا رقمياً؟",ch:[{t:"الحوار المفتوح والوعي",c:true},{t:"المنع التام",c:false}],w:"معاً"},
- {cat:"🌍 منصات",q:"منصة تعليمية مجانية مشهورة؟",ch:[{t:"Khan Academy",c:true},{t:"TikTok",c:false}],w:"نصنع"},
- {cat:"👨‍👩‍👧 دور الأهل",q:"ما أهم رسالة للأهل؟",ch:[{t:"التكنولوجيا أداة وعلينا توجيهها",c:true},{t:"الابتعاد عن التقنية",c:false}],w:"الفارق"}
+/* ────────────────────────────────
+   DATA
+──────────────────────────────── */
+const PHRASE1 = new Set(["أبناؤنا","هم","مستقبلنا"]);
+const PHRASE2 = new Set(["نحن","معاً","نصنع","الفارق"]);
+
+const HINTS = [
+  "الجملة الأولى تبدأ بكلمة «أبناؤنا» وهي 3 كلمات فقط.",
+  "الجملة الثانية تبدأ بـ «نحن» وتحتوي على 4 كلمات.",
+  "الجملة الأولى: أبناؤنا + هم + مستقبلنا\nالجملة الثانية: نحن + معاً + نصنع + الفارق"
 ];
 
-let cQ=0,score=0,tLeft=900,tInt=null,collected=[],z1=[null,null,null],z2=[null,null,null,null],selWord=null;
-
-function startGame(){
-  document.getElementById('S-intro').style.display='none';
-  document.getElementById('S-game').style.display='block';
-  loadQ();
-  tInt=setInterval(tick,1000);
-}
-
-function loadQ(){
-  const q=QS[cQ];
-  document.getElementById('qnum').textContent=cQ+1;
-  document.getElementById('qtext').textContent=q.q;
-  document.getElementById('qcat').textContent=q.cat;
-  document.getElementById('nxt').style.display='none';
-  const el=document.getElementById('choices');
-  el.innerHTML='';
-  q.ch.forEach(c=>{
-    const b=document.createElement('button');
-    b.className='cbtn';
-    b.textContent=c.t;
-    b.onclick=()=>{
-      if(c.c){
-        b.classList.add('correct');
-        score+=100;
-        document.getElementById('score').textContent=score;
-        collected.push(q.w);
-        document.getElementById('nxt').style.display='block';
-      } else {
-        b.classList.add('wrong');
-      }
-    };
-    el.appendChild(b);
-  });
-}
-
-function nextQ(){
-  cQ++;
-  if(cQ>=QS.length){
-    clearInterval(tInt);
-    document.getElementById('S-game').style.display='none';
-    document.getElementById('S-final').style.display='block';
-    renderPool();
-  } else loadQ();
-}
-
-function tick(){
-  tLeft--;
-  let m=Math.floor(tLeft/60),s=tLeft%60;
-  document.getElementById('timer').textContent=`${m}:${s<10?'0':''}${s}`;
-}
-
-function renderPool(){
-  const p=document.getElementById('pool');
-  p.innerHTML='';
-  const used=[...z1,...z2];
-  collected.forEach(w=>{
-    const d=document.createElement('div');
-    d.className='tw' + (used.includes(w)?' used':'') + (selWord===w?' sel':'');
-    d.textContent=w;
-    d.onclick=()=> {selWord=w; renderPool();};
-    p.appendChild(d);
-  });
-}
-
-function slotTap(zn,idx){
-  let arr = zn===1?z1:z2;
-  if(arr[idx]){arr[idx]=null; renderPool(); renderSlots(); return;}
-  if(!selWord) return;
-  arr[idx]=selWord;
-  selWord=null;
-  renderPool();
-  renderSlots();
-}
-
-function renderSlots(){
-  for(let i=0;i<3;i++) document.getElementById('z1s'+i).textContent=z1[i]||'+';
-  for(let i=0;i<4;i++) document.getElementById('z2s'+i).textContent=z2[i]||'+';
-  document.querySelectorAll('.slot').forEach(s=>s.classList.toggle('filled', s.textContent !== '+'));
-}
-
-function checkFinal(){
-  const s1=new Set(z1), s2=new Set(z2);
-  const ok1=[...P1].every(w=>s1.has(w)) && [...P2].every(w=>s2.has(w));
-  const ok2=[...P1].every(w=>s2.has(w)) && [...P2].every(w=>s1.has(w));
-  if(ok1 || ok2){
-    document.getElementById('S-final').style.display='none';
-    document.getElementById('S-win').style.display='block';
-  } else {
-    document.getElementById('cerr').textContent="الترتيب غير صحيح، حاول مرة أخرى!";
-  }
-}
-</script>
-</body>
-</html>
+const QUESTIONS=[
+  {cat:"🤖 الذكاء الاصطناعي",illus:"🤖",
+   text:"ما هو الذكاء الاصطناعي بمفهوم بسيط؟",
+   choices:[{t:"تقنية تجعل الكمبيوتر يتعلم ويفكر مثل الإنسان",c:true},{t:"شبكة تواصل اجتماعي متطورة",c:false},{t:"برنامج ألعاب إلكترونية ذكية",c:false},{t:"نوع من أجهزة التخزين السحابية",c:false}],
+   word:"أبناؤنا",fb:"✅ الذكاء الاصطناعي يُعلّم الحاسوب التفكير والتعلم من البيانات مثلنا!"},
+  {cat:"💻 التعلم عن بُعد",illus:"🏠",
+   text:"ما أبر
